@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: "Chetty";
+  font-weight: 400;
+  font-style: normal;
+  src:
+    url("/fonts/ofont.ru_Chetty.woff2") format("woff2") url("/fonts/ofont.ru_Chetty.eot") format("eot"),
+    url("/fonts/ofont.ru_Chetty.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LunaObskurra";
+  font-weight: 400;
+  font-style: normal;
+  src:
+    url("/fonts/HS_LunaObscura.woff2") format("woff2") url("/fonts/HS_LunaObscura.eot") format("eot"),
+    url("/fonts/HS_LunaObscura.woff") format("woff");
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    
+  }
+
+  body {
+    background: #e4e4e4;
+    font-family: 'Chetty', sans-serif;
+  }
+}
