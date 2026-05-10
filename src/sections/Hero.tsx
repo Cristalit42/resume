@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "../shared/lib/cn";
 import { Container, Title, Text, Button, Clock, sectionMargin } from "../components/";
 
+
 import heroImg from "../assets/hero-img.png";
 
 
@@ -59,7 +60,7 @@ export const Hero: React.FC<Props> = ({ className }) => {
         </div>
 
       </Container>
-      <img className="absolute right-0 bottom-[-30px] 1200:z-[1] z-[-1] w-[250px]  sm:w-[350px] 1000:w-[600px]" src={heroImg} alt="Hero Image" />
+      <img className="absolute right-0 bottom-[-55px] 1200:z-[1] z-[-1] w-[250px]  sm:w-[350px] 1000:w-[600px]" src={heroImg} alt="Hero Image" />
     </div>
   );
 };

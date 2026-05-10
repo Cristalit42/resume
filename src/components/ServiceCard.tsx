@@ -48,10 +48,10 @@ export const ServicesCard: React.FC<Props> = ({ className, number, text, title }
           </filter>
         </defs>
       </svg>
-      <Title text={number} size="md" className="sm:text-[50px] text-[35px]"></Title>
+      <Title text={number} size="md" className="sm:text-[50px] text-[35px] animate-text"></Title>
 
       <div className="flex flex-col sm:gap-4 gap-1 items-start max-w-[420px]">
-        <Title text={title} size="sm" className="sm:text-[18px] text-[15px]"></Title>
+        <Title text={title} size="sm" className="sm:text-[18px] text-[15px] animate-text"></Title>
         <Text className="opacity-60 sm:text-[16px] text-sm">
           {text}
         </Text>

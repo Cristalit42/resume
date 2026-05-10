@@ -15,7 +15,7 @@ const cardsInfo = [
   {
     title: 'Telegram::',
     text: '@Cristalit42',
-    link: 'https://t.me/@Cristalit42',
+    link: 'https://t.me/Cristalit42',
   },
   {
     title: 'Номер телефона::',

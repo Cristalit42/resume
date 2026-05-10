@@ -18,7 +18,7 @@ export const Skills: React.FC<Props> = ({ className }) => {
         <div className="flex flex-col lg:mb-20 mb-8">
           <div className="flex sm:items-center sm:flex-row flex-col-reverse gap-5 justify-between">
             <Title text='Основа моей' size="xl" className="1200:text-[80px] 1000:text-[60px] text-[31px]"></Title>
-            <SectionHead number="003" text="Мои навыки"></SectionHead>
+            <SectionHead number="003" text="Мои навыки" link="skills"></SectionHead>
           </div>
           <Typewriter />
         </div>

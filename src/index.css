@@ -26,11 +26,48 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    
+    scroll-margin-top: 114px;
   }
 
   body {
     background: #e4e4e4;
     font-family: 'Chetty', sans-serif;
   }
+}
+
+@layer base {
+  *::selection {
+    @apply bg-[#ff370c]/60 text-white;
+
+  }
+
+  .bg-primary *::selection {
+    @apply bg-white/80 text-black;
+  }
+
+
+}
+
+section {
+  scroll-margin-top: 130px;
+}
+
+/* ===== Chrome, Edge, Safari, Opera ===== */
+::-webkit-scrollbar {
+  width: 9px;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff370c;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+/* Убираем стрелочки у старых версий браузеров */
+::-webkit-scrollbar-button {
+  display: none;
 }

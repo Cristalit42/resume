@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, useEffect, useRef } from 'react';
+import { AnimateText } from './AnimationText';
 
 type TitleSize = 'xs' | 'sm' | '2sm' | 'md' | 'lg' | 'xl' | '2xl';
 
@@ -10,6 +11,14 @@ interface Props {
 }
 
 export const Title: React.FC<Props> = ({ text, size = 'sm', className }) => {
+  const ref = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      AnimateText(ref.current);
+    }
+  }, []);
+
   const mapTagBySize = {
     xs: 'h5',
     sm: 'h4',
@@ -20,19 +29,26 @@ export const Title: React.FC<Props> = ({ text, size = 'sm', className }) => {
     '2xl': 'h1',
   } as const;
 
-  const mapClassNameBySize = {
-    xs: 'text-[16px]',
-    sm: 'text-[18px]',
-    '2sm': 'text-[22px]',
-    md: 'text-[50px]',
-    lg: 'text-[32px] ',
-    xl: 'text-[80px] ',
-    '2xl': 'text-[80px] ',
-  } as const;
+const mapClassNameBySize = {
+  xs: '',
+  sm: '',
+  '2sm': '',
+  md: '',
+  lg: '',
+  xl: '',
+  '2xl': '',
+};
 
   return React.createElement(
     mapTagBySize[size],
-    { className: clsx(mapClassNameBySize[size], className, 'font-luna') },
-    text,
+    {
+      ref,
+      className: clsx(
+        mapClassNameBySize[size],
+        className,
+        'font-luna animate-text'
+      ),
+    },
+    text
   );
 };
