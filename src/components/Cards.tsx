@@ -7,9 +7,9 @@ interface Props {
   variant: 'grid' | 'flex';
   cardsInfo:
   {
-    title: string,
-    text: string,
-    info?: string,
+    title: React.ReactNode,
+    text: React.ReactNode,
+    info?: React.ReactNode,
     rows?: boolean
   }[];
 
@@ -38,7 +38,7 @@ export const Cards: React.FC<Props> = ({ className, cardsInfo, variant }) => {
           }
 
           if (variant == 'flex') {
-            _cardClazz = 'grid 1000:grid-cols-3 grid-cols-1 items-center justofy-between gap-5 1000:py-10 py-6 1000:px-6 px-4 bg-[#f4f4f4] shadow-custom   '
+            _cardClazz = 'grid 1000:grid-cols-[400px_270px_1fr] grid-cols-1 items-center justofy-between gap-5 1000:py-10 py-6 1000:px-6 px-4 bg-[#f4f4f4] shadow-custom   '
           }
 
 

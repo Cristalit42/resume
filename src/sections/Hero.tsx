@@ -17,7 +17,7 @@ export const Hero: React.FC<Props> = ({ className }) => {
       <Container className="relative">
         <div className="flex sm:p-5 p-3 items-center justify-between gap-5 bg-primary 1200:absolute top-0 right-4 w-full 1200:max-w-[570px]">
           <Text className="text-white sm:text-2xl text-xs">
-            Frontend / WordPress<br />разработчик
+            Frontend Developer<br />(React)
           </Text>
           <div className="flex flex-col sm:gap-2 gap-1">
             <Text className="text-white opacity-70 sm:text-base text-xs ">
@@ -29,9 +29,10 @@ export const Hero: React.FC<Props> = ({ className }) => {
         <div className="max-w-[660px]">
           <Title text={<>Даниил <br /> Полыгалов</>} size="2xl" className="1200:mb-5 1200:text-[80px] sm:text-[60px] text-[34px] mb-0"></Title>
           <Text className="1200:mb-8 mb-4 sm:text-base text-sm">
-            Создаю кастомные сайты, интерфейсы и сложную frontend-логику для WordPress и WooCommerce без использования тяжелых конструкторов.
+            Пишу на React, TypeScript и Next.js.<br />
+            2+ года в коммерческой разработке.
           </Text>
-          <Button variant="primary" className="mb-5">
+          <Button variant="primary" className="mb-5" link="https://github.com/Cristalit42" >
             Смотреть кейсы
             <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9.15833 2.68333V1.34167V0L11.8417 0V2.68333H9.15833Z" fill="white" />
@@ -54,13 +55,13 @@ export const Hero: React.FC<Props> = ({ className }) => {
               50+
             </div>
             <Text className="text-black sm:text-base text-sm">
-              проектов разного<br /> масштаба и сложности
+              коммерческих проектов
             </Text>
           </div>
         </div>
 
       </Container>
-      <img className="absolute right-0 bottom-[-55px] 1200:z-[1] z-[-1] w-[250px]  sm:w-[350px] 1000:w-[600px]" src={heroImg} alt="Hero Image" />
+      <img className="absolute right-0 bottom-[-80px] 1200:z-[1] z-[-1] w-[250px]  sm:w-[350px] 1000:w-[600px]" src={heroImg} alt="Hero Image" />
     </div>
   );
 };

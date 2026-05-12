@@ -43,49 +43,49 @@ export const Skills: React.FC<Props> = ({ className }) => {
               {
                 text: "Кроссбраузерная верстка"
               },
-              {
-                text: "UX-ориентированная разработка"
-              },
             ]
           },
           {
-            title: "WordPress",
+            title: "React-стек",
             number: "02",
             variant: "red",
             items: [
               {
-                text: "Создание кастомных тем"
+                text: "React"
               },
               {
-                text: "WooCommerce кастомизация"
+                text: "TypeScript"
               },
               {
-                text: "ACF (Advanced Custom Fields)"
+                text: "Tailwind CSS"
               },
               {
-                text: "Кастомная логика интернет-магазинов"
+                text: "Next.js (в разработке)"
+              },
+              {
+                text: "PostgreSQL / Prisma (базовый уровень)"
               },
             ]
           },
           {
-            title: "JavaScript-библиотеки",
+            title: "Инструменты",
             number: "03",
             variant: "white",
             items: [
               {
-                text: "Swiper"
+                text: " Git / GitHub"
               },
               {
-                text: "GSAP"
+                text: "REST API"
               },
               {
-                text: "ScrollTrigger"
+                text: "GSAP + ScrollTrigger"
               },
               {
-                text: "Fancybox"
+                text: "Swiper, Fancybox"
               },
               {
-                text: "MixItUp"
+                text: "WordPress / ACF"
               },
             ]
           },

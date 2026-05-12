@@ -93,7 +93,7 @@ React.useEffect(() => {
         </nav>
 
         <Button variant="black">
-          Обсудить проект
+          Связаться со мной
         </Button>
       </Container>
     </header>

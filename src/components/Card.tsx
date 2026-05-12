@@ -4,9 +4,9 @@ import { Title, Text } from "./";
 
 interface Props {
   className?: string;
-  title?: string;
-  info?: string;
-  text?: string;
+  title?: React.ReactNode;
+  info?: React.ReactNode;
+  text?: React.ReactNode;
 }
 
 

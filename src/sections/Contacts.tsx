@@ -13,12 +13,12 @@ const cardsInfo = [
     link: 'mailto:cristalit42@gmail.com',
   },
   {
-    title: 'Telegram::',
+    title: 'Telegram:',
     text: '@Cristalit42',
     link: 'https://t.me/Cristalit42',
   },
   {
-    title: 'Номер телефона::',
+    title: 'Номер телефона:',
     text: '+996 555 381881',
     link: 'tel:996555381881',
   },
@@ -28,8 +28,8 @@ export const Contacts: React.FC<Props> = ({ className }) => {
   return (
     <div className={cn('', className, sectionMargin)} id="contacts">
       <Container>
-        <Title text='Обсудим проект?' size="md" className="text-center 1000:mb-[25px] mb-[15px] 1000:text-[50px] text-[23px]"></Title>
-        <Text className="text-center sm:mb-10 mb-5">Готов к новым проектам, удалённому сотрудничеству <br /> и интересным задачам.</Text>
+        <Title text='Открыт к новым возможностям' size="md" className="text-center 1000:mb-[25px] mb-[15px] 1000:text-[50px] text-[23px]"></Title>
+        <Text className="text-center sm:mb-10 mb-5">Ищу позицию Frontend / React-разработчика в команде. Готов к удалённой работе и релокации.</Text>
 
         <div className="grid 1000:grid-cols-3 grid-cols-1 gap-4">
           {cardsInfo.map((item) => {
