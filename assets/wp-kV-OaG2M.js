@@ -1,1 +1,0 @@
-import{d as e,l as t,s as n,u as r}from"./projects-KtOeGSM3.js";import{n as i,r as a}from"./resumes-hIHOyFgf.js";var o=e(r(),1),s=t(),c=n();(0,s.createRoot)(document.getElementById(`root`)).render((0,c.jsx)(o.StrictMode,{children:(0,c.jsx)(a,{data:i})}));

@@ -1,0 +1,1 @@
+import{f as e,g as t,h as n,i as r,m as i,u as a}from"./projects-8FW1WW8u.js";import{n as o,t as s}from"./resumes-DZxDZm8b.js";var c=t(n(),1),l=i(),u=e(),d=r();(0,l.createRoot)(document.getElementById(`root`)).render((0,u.jsx)(c.StrictMode,{children:(0,u.jsx)(a.Provider,{value:d,children:(0,u.jsx)(o,{data:s.wp[d]})})}));
