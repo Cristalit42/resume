@@ -1,48 +1,33 @@
 import React from "react";
 import { cn } from "../shared/lib/cn";
 import { Container, sectionMargin, Text, Title } from "../components";
+import { contacts } from "../data/profile";
 
 interface Props {
   className?: string;
 }
 
-const cardsInfo = [
-  {
-    title: 'Email:',
-    text: 'cristalit42@gmail.com',
-    link: 'mailto:cristalit42@gmail.com',
-  },
-  {
-    title: 'Telegram:',
-    text: '@Cristalit42',
-    link: 'https://t.me/Cristalit42',
-  },
-  {
-    title: 'Номер телефона:',
-    text: '+996 555 381881',
-    link: 'tel:996555381881',
-  },
-]
 
 export const Contacts: React.FC<Props> = ({ className }) => {
   return (
-    <div className={cn('', className, sectionMargin)} id="contacts">
+    <div className={cn('', className, sectionMargin)}>
       <Container>
         <Title text='Открыт к новым возможностям' size="md" className="text-center 1000:mb-[25px] mb-[15px] 1000:text-[50px] text-[23px]"></Title>
-        <Text className="text-center sm:mb-10 mb-5">Ищу позицию Frontend / React-разработчика в команде. Готов к удалённой работе и релокации.</Text>
+        <Text className="text-center sm:mb-10 mb-5">Ищу позицию Frontend-разработчика — WordPress/JS или React/Next.js. Готов к удалённой работе.</Text>
 
         <div className="grid 1000:grid-cols-3 grid-cols-1 gap-4">
-          {cardsInfo.map((item) => {
+          {contacts.map((item) => {
             return (
               <a
-                href={item.link}
-                target="_blank"
+                key={item.href}
+                href={item.href}
+                {...(item.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
                 className="bg-white py-10 px-6 block transition-all hover:scale-[1.02] duration-300"
                 style={{
                   clipPath: "polygon(0 0, 92% 0, 100% 25%, 100% 100%, 8% 100%, 0 75%)"
                 }}>
                 <p className="text-base text-gray-400 mb-4">
-                  {item.title}
+                  {item.label}:
                 </p>
                 <p className="font-luna 1300:text-[20px] text-[15px] uppercase text-black">
                   {item.text}

@@ -6,12 +6,11 @@ interface Props {
   className?: string;
   number: string;
   text: string;
-  link?: string;
 }
 
-export const SectionHead: React.FC<Props> = ({ className, number, text, link }) => {
+export const SectionHead: React.FC<Props> = ({ className, number, text }) => {
   return (
-    <div className={cn('flex items-center gap-5', className)} id={link}>
+    <div className={cn('flex items-center gap-5', className)}>
       <div className="font-luna text-base text-[#c2c2c2] flex items-center gap-1">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0H16V16H0V0Z" fill="#C2C2C2" />

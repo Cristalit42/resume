@@ -15,36 +15,27 @@ export const Typewriter = () => {
 
   useEffect(() => {
     const currentWord = words[wordIndex];
-    let timeout: ReturnType<typeof setTimeout>;
+    const isWordTyped = !isDeleting && text === currentWord;
+    const isWordErased = isDeleting && text === "";
+    const delay = isWordTyped ? 3500 : isDeleting ? 50 : 100;
 
-    if (!isDeleting) {
-      // печатаем
-      timeout = setTimeout(() => {
-        setText(currentWord.slice(0, text.length + 1));
-      }, 100);
-
-      // когда допечатали слово
-      if (text === currentWord) {
-        timeout = setTimeout(() => setIsDeleting(true), 3500);
-      }
-    } else {
-      // стираем
-      timeout = setTimeout(() => {
-        setText(currentWord.slice(0, text.length - 1));
-      }, 50);
-
-      // когда стерли полностью
-      if (text === "") {
+    // Все обновления состояния — внутри колбэка таймера, а не синхронно в эффекте
+    const timeout = setTimeout(() => {
+      if (isWordTyped) {
+        setIsDeleting(true);
+      } else if (isWordErased) {
         setIsDeleting(false);
         setWordIndex((prev) => (prev + 1) % words.length);
+      } else {
+        setText(currentWord.slice(0, text.length + (isDeleting ? -1 : 1)));
       }
-    }
+    }, delay);
 
     return () => clearTimeout(timeout);
   }, [text, isDeleting, wordIndex]);
 
   return (
-    <p className=" 1200:text-[85px] 1000:text-[60px] text-[30px] text-primary font-luna font-bold p-3 bg-secondary max-w-[900px] 1000:w-full w-[calc(100% - 120px)] 1200:ml-auto sm:ml-[120px] ml-[30px]  border-l-2 border-primary">
+    <p className=" 1200:text-[85px] 1000:text-[60px] text-[30px] text-primary font-luna font-bold p-3 bg-secondary max-w-[900px] 1000:w-full 1200:ml-auto sm:ml-[120px] ml-[30px]  border-l-2 border-primary">
       {text}
       <span className="border-r-2 border-primary ml-1 animate-pulse duration-140"></span>
     </p>

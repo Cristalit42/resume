@@ -20,7 +20,7 @@ export const SkillsCards: React.FC<Props> = ({ className, cardInfo }) => {
       {
         cardInfo.map((item, index) => {
           return (
-            <SkillsCard className={index == 1 ? '1000:mt-5' : ''}  title={item.title} number={item.number} variant={item.variant} items={item.items}></SkillsCard>
+            <SkillsCard key={item.number} className={index === 1 ? '1000:mt-5' : ''} title={item.title} number={item.number} variant={item.variant} items={item.items}></SkillsCard>
           )
         })
       }

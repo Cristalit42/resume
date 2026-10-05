@@ -12,21 +12,25 @@ export const About: React.FC<Props> = ({ className }) => {
   return (
     <div className={cn('relative', className, sectionMargin)}>
       <Container className="flex 1000:flex-row flex-col justify-between items-start gap-5 w-full relative z-20">
-        <SectionHead number="001" text="Обо мне" link="about" />
+        <SectionHead number="001" text="Обо мне" />
         <div className="flex flex-col gap-3 w-full max-w-[900px]">
           <Text className="text-sm sm:text-base">
             Frontend-разработчик с 2+ годами коммерческого опыта.
           </Text>
           <Text className="text-sm sm:text-base">
-            Начинал с верстки и интеграции — это дало крепкую базу:
+            Начинал с вёрстки и интеграции — это дало крепкую базу:
             понимание архитектуры UI, адаптивности, производительности
             и работы интерфейсов под нагрузкой реальных проектов.
-
           </Text>
           <Text className="text-sm sm:text-base">
-            Сейчас основной фокус — React. Пишу на TypeScript,
-            использую Tailwind, разрабатываю fullstack-проект
-            на Next.js с PostgreSQL и Prisma.
+            За это время сдал 50+ коммерческих проектов на WordPress
+            и WooCommerce — от лендингов до интернет-магазинов со сложной
+            кастомной логикой.
+          </Text>
+          <Text className="text-sm sm:text-base">
+            Сейчас активно перехожу на React-стек: пишу на TypeScript,
+            использую Tailwind, разрабатываю fullstack pet-проект на
+            Next.js с PostgreSQL и Prisma.
           </Text>
           <Text className="text-sm sm:text-base">
             Предпочитаю чистую архитектуру без лишних зависимостей,

@@ -18,21 +18,21 @@ const links = [
     link: 'about',
   },
   {
-    text: 'Мои услуги',
-    link: 'services',
-  },
-  {
     text: 'Навыки',
     link: 'skills',
   },
   {
     text: 'Опыт',
-    link: 'expirience',
+    link: 'experience',
   },
-  // {
-  //   text: 'Проекты',
-  //   link: 'projects',
-  // },
+  {
+    text: 'Проекты',
+    link: 'projects',
+  },
+  {
+    text: 'Резюме',
+    link: 'resume',
+  },
   {
     text: 'Контакты',
     link: 'contacts',
@@ -68,11 +68,12 @@ React.useEffect(() => {
       <Container className="flex items-center justify-between gap-5">
         <img className="w-[130px] sm:w-[200px] " src={logo} alt="Logo" />
 
-        <nav className="lg:flex hidden items-center gap-5 justify-between max-w-[530px]">
+        <nav className="lg:flex hidden items-center gap-5 justify-between max-w-[600px]">
           {
             links.map((item) => {
               return (
                 <a
+                  key={item.link}
                   className={cn(
                     "group flex flex-col gap-1 font-chetty text-[13px] uppercase hover:text-primary transition",
                     activeSection === item.link && 'text-primary'

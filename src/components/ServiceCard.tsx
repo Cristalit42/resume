@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { cn } from "../shared/lib/cn";
 import { Title, Text } from "./";
 
@@ -10,14 +10,17 @@ interface Props {
 }
 
 export const ServicesCard: React.FC<Props> = ({ className, number, text, title }) => {
+  // уникальный id фильтра для каждой карточки (иначе в DOM дубли id)
+  const filterId = `service-glow-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
+
   return (
     <div className={cn('relative sm:p-7 p-4 bg-[#f4f4f4] flex flex-col sm:flex-row sm:items-center sm:gap-5 justify-between', className)}>
       <svg className="absolute top-0 sm:left-[60px] left-[15px]" width="68" height="43" viewBox="0 0 68 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_ddddd_1736_36)">
+        <g filter={`url(#${filterId})`}>
           <path d="M9 2H59" stroke="#FF370C" stroke-width="2" />
         </g>
         <defs>
-          <filter id="filter0_ddddd_1736_36" x="0" y="-1" width="68" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <filter id={filterId} x="0" y="-1" width="68" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix" />
             <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
             <feOffset dy="1" />

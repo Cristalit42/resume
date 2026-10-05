@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# исходники скриншотов (в сборку идут webp из src/assets/projects)
+screenshots-original

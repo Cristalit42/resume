@@ -19,7 +19,7 @@ export const ServicesCards: React.FC<Props> = ({ className, serviceCardsInfo }) 
         {
           serviceCardsInfo.map((item) => {
             return (
-              <ServicesCard number={item.number} title={item.title} text={item.text} ></ServicesCard>
+              <ServicesCard key={item.number} number={item.number} title={item.title} text={item.text} ></ServicesCard>
             )
           })
         }

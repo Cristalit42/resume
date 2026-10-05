@@ -7,7 +7,6 @@ export { SectionHead } from "../components/SectionHead";
 export { Cards } from "../components/Cards";
 export { ServicesCards } from "../components/ServicesCards";
 export { Typewriter } from "../components/Typewriter";
-export { AnimateText } from "../components/AnimationText";
 
 
 

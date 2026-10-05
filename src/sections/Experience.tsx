@@ -6,11 +6,11 @@ interface Props {
   className?: string;
 }
 
-export const Expirience: React.FC<Props> = ({ className }) => {
+export const Experience: React.FC<Props> = ({ className }) => {
   return (
     <div className={cn('', className, sectionMargin)}>
       <Container>
-        <SectionHead number="004" text="Опыт разработки" link="expirience" className="mb-10"></SectionHead>
+        <SectionHead number="004" text="Опыт разработки" className="mb-10"></SectionHead>
 
         <Cards variant={"flex"} cardsInfo={[
           {
@@ -43,7 +43,7 @@ export const Expirience: React.FC<Props> = ({ className }) => {
                 2023 — настоящее время
               </>
             ),
-            info: "Разработка сайтов под ключ для малого бизнеса — от верстки до деплоя.:",
+            info: "Разработка сайтов под ключ для малого бизнеса — от верстки до деплоя.",
             text: "WordPress-разработка разного профиля: кастомные темы и шаблоны, настройка ACF, доработки и правки существующих сайтов, оптимизация скорости загрузки, подключение форм и интеграции. Проекты от лендингов до небольших интернет-магазинов на WooCommerce.",
             rows: false
           },
@@ -54,12 +54,12 @@ export const Expirience: React.FC<Props> = ({ className }) => {
                 React-стек
               </>
             ),
-            info: "Личные проекты для прокачки современного стека — React, TypeScript, Next.js. Не учебные задания, а реальные работающие продукты с продуманной архитектурой и деплоем.",
+            info: "Личные проекты для прокачки современного стека — React, TypeScript, Next.js: компонентная архитектура, типизация, деплой.",
             text: (
               <>
-                <span className="text-primary">—</span> <a className="text-primary" href="/">Резюме-сайт:</a> React, TypeScript, Tailwind CSS
-                Полностью компонентный, задеплоен на <a className="text-primary" href="https://github.com/Cristalit42/resume">GitHub</a> Pages<br /> <br />
-                <span className="text-primary">—</span> Магазин (в разработке): Next.js, TypeScript, Tailwind, PostgreSQL, Prisma Fullstack-проект с компонентной архитектурой и реальной базой данных.<a className="text-primary" href="https://github.com/Cristalit42/next-pizza"> GitHub </a>
+                <span className="text-primary">—</span> Резюме-сайт: React, TypeScript, Tailwind CSS
+                Полностью компонентный, задеплоен на <a className="text-primary" href="https://github.com/Cristalit42/resume" target="_blank" rel="noopener noreferrer">GitHub</a> Pages<br /> <br />
+                <span className="text-primary">—</span> Магазин (в разработке): Next.js, TypeScript, Tailwind, PostgreSQL, Prisma Fullstack-проект с компонентной архитектурой и реальной базой данных.<a className="text-primary" href="https://github.com/Cristalit42/next-pizza" target="_blank" rel="noopener noreferrer"> GitHub </a>
               </>
       ),
       rows: false

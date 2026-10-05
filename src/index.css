@@ -8,7 +8,7 @@
   font-weight: 400;
   font-style: normal;
   src:
-    url("/fonts/ofont.ru_Chetty.woff2") format("woff2") url("/fonts/ofont.ru_Chetty.eot") format("eot"),
+    url("/fonts/ofont.ru_Chetty.woff2") format("woff2"),
     url("/fonts/ofont.ru_Chetty.woff") format("woff");
   font-display: swap;
 }
@@ -18,7 +18,7 @@
   font-weight: 400;
   font-style: normal;
   src:
-    url("/fonts/HS_LunaObscura.woff2") format("woff2") url("/fonts/HS_LunaObscura.eot") format("eot"),
+    url("/fonts/HS_LunaObscura.woff2") format("woff2"),
     url("/fonts/HS_LunaObscura.woff") format("woff");
   font-display: swap;
 }
@@ -70,4 +70,66 @@ section {
 /* Убираем стрелочки у старых версий браузеров */
 ::-webkit-scrollbar-button {
   display: none;
+}
+/* ===== Text reveal animation (see components/AnimationText.tsx) ===== */
+.animate-text .animate-word {
+  display: inline-block;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform .45s cubic-bezier(.2, .65, .3, 1), opacity .45s ease;
+}
+
+.animate-text.animate .animate-word {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-text .animate-word {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}
+
+/* ===== Печать / сохранение резюме в PDF ===== */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm 14mm;
+  }
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* ===== Слайдер проектов ===== */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Длинный скриншот плавно прокручивается вниз при наведении на мокап */
+.mockup-scroll {
+  transition: object-position 6s ease;
+}
+
+.mockup-scroll:hover {
+  object-position: bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mockup-scroll {
+    transition: none;
+  }
 }

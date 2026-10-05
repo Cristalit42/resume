@@ -1,8 +1,9 @@
-import clsx from 'clsx';
-import React, { type ReactNode, useEffect, useRef } from 'react';
-import { AnimateText } from './AnimationText';
+import React, { type ReactNode } from "react";
+import { cn } from "../shared/lib/cn";
+import { useReveal } from "../shared/lib/useReveal";
+import { splitWords } from "./AnimationText";
 
-type TitleSize = 'xs' | 'sm' | '2sm' | 'md' | 'lg' | 'xl' | '2xl';
+type TitleSize = "xs" | "sm" | "2sm" | "md" | "lg" | "xl" | "2xl";
 
 interface Props {
   size?: TitleSize;
@@ -10,45 +11,25 @@ interface Props {
   text: ReactNode;
 }
 
-export const Title: React.FC<Props> = ({ text, size = 'sm', className }) => {
-  const ref = useRef<HTMLHeadingElement | null>(null);
+const tagBySize = {
+  xs: "h5",
+  sm: "h4",
+  "2sm": "h4",
+  md: "h3",
+  lg: "h2",
+  xl: "h2",
+  "2xl": "h1",
+} as const;
 
-  useEffect(() => {
-    if (ref.current) {
-      AnimateText(ref.current);
-    }
-  }, []);
-
-  const mapTagBySize = {
-    xs: 'h5',
-    sm: 'h4',
-    '2sm': 'h4',
-    md: 'h3',
-    lg: 'h2',
-    xl: 'h2',
-    '2xl': 'h1',
-  } as const;
-
-const mapClassNameBySize = {
-  xs: '',
-  sm: '',
-  '2sm': '',
-  md: '',
-  lg: '',
-  xl: '',
-  '2xl': '',
-};
+export const Title: React.FC<Props> = ({ text, size = "sm", className }) => {
+  const { ref, visible } = useReveal<HTMLHeadingElement>();
 
   return React.createElement(
-    mapTagBySize[size],
+    tagBySize[size],
     {
       ref,
-      className: clsx(
-        mapClassNameBySize[size],
-        className,
-        'font-luna animate-text'
-      ),
+      className: cn("font-luna animate-text", visible && "animate", className),
     },
-    text
+    splitWords(text)
   );
 };

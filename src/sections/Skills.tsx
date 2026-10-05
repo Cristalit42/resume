@@ -18,7 +18,7 @@ export const Skills: React.FC<Props> = ({ className }) => {
         <div className="flex flex-col lg:mb-20 mb-8">
           <div className="flex sm:items-center sm:flex-row flex-col-reverse gap-5 justify-between">
             <Title text='Основа моей' size="xl" className="1200:text-[80px] 1000:text-[60px] text-[31px]"></Title>
-            <SectionHead number="003" text="Мои навыки" link="skills"></SectionHead>
+            <SectionHead number="003" text="Мои навыки"></SectionHead>
           </div>
           <Typewriter />
         </div>
@@ -46,7 +46,7 @@ export const Skills: React.FC<Props> = ({ className }) => {
             ]
           },
           {
-            title: "React-стек",
+            title: "Изучаю и применяю в pet-проектах",
             number: "02",
             variant: "red",
             items: [
@@ -60,10 +60,10 @@ export const Skills: React.FC<Props> = ({ className }) => {
                 text: "Tailwind CSS"
               },
               {
-                text: "Next.js (в разработке)"
+                text: "Next.js"
               },
               {
-                text: "PostgreSQL / Prisma (базовый уровень)"
+                text: "PostgreSQL / Prisma"
               },
             ]
           },
@@ -76,6 +76,9 @@ export const Skills: React.FC<Props> = ({ className }) => {
                 text: " Git / GitHub"
               },
               {
+                text: "WordPress / ACF / WooCommerce"
+              },
+              {
                 text: "REST API"
               },
               {
@@ -83,9 +86,6 @@ export const Skills: React.FC<Props> = ({ className }) => {
               },
               {
                 text: "Swiper, Fancybox"
-              },
-              {
-                text: "WordPress / ACF"
               },
             ]
           },

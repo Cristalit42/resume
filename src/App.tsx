@@ -1,10 +1,12 @@
 import './App.css'
 import { About } from './sections/About'
 import { Contacts } from './sections/Contacts'
-import { Expirience } from './sections/Expirience'
+import { Experience } from './sections/Experience'
 import { Footer } from './sections/Footer'
 import { Header } from './sections/Header'
 import { Hero } from './sections/Hero'
+import { Projects } from './sections/Projects'
+import { ResumeLinks } from './sections/ResumeLinks'
 import { Services } from './sections/Services'
 import { Skills } from './sections/Skills'
 
@@ -27,8 +29,16 @@ function App() {
         <Skills />
       </section>
 
-      <section id="expirience" data-section>
-        <Expirience />
+      <section id="experience" data-section>
+        <Experience />
+      </section>
+
+      <section id="projects" data-section>
+        <Projects />
+      </section>
+
+      <section id="resume" data-section>
+        <ResumeLinks />
       </section>
 
       <section id="contacts" data-section>

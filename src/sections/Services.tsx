@@ -11,13 +11,13 @@ export const Services: React.FC<Props> = ({ className }) => {
   return (
     <div className={cn('', className, sectionMargin)}>
       <Container>
-        <SectionHead number="002" text="Что я умею" link="services" className="mb-10"></SectionHead>
+        <SectionHead number="002" text="Что я умею" className="mb-10"></SectionHead>
         <ServicesCards
           serviceCardsInfo={[
             {
               number: "01",
-              title: "React-разработка",
-              text: "Компонентный подход, хуки (useState, useEffect), работа с props и state, TypeScript, Tailwind CSS."
+              title: "WordPress / WooCommerce",
+              text: "Кастомные темы, ACF, сложная JS-логика для интернет-магазинов, интеграции с Telegram и почтой. 50+ проектов сдано в срок."
             },
             {
               number: "02",
@@ -31,8 +31,8 @@ export const Services: React.FC<Props> = ({ className }) => {
             },
             {
               number: "04",
-              title: "Fullstack (в развитии)",
-              text: "Next.js, PostgreSQL, Prisma — строю реальный проект, понимаю как устроен бэк и работа с БД."
+              title: "React / Next.js (растущее направление)",
+              text: "TypeScript, компонентный подход, хуки, Tailwind. Строю fullstack-проект на Next.js с PostgreSQL и Prisma — понимаю, как устроен бэк и работа с БД."
             },
           ]} />
       </Container>
