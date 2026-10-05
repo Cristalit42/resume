@@ -5,6 +5,8 @@ import logo from "../assets/logo.svg"
 
 import { Container } from "../components/Container";
 import { Button } from "../components/Button";
+import { LangSwitch } from "../components/LangSwitch";
+import { useHubText } from "../i18n/hub";
 
 
 
@@ -12,35 +14,10 @@ interface Props {
   className?: string;
 }
 
-const links = [
-  {
-    text: 'Обо мне',
-    link: 'about',
-  },
-  {
-    text: 'Навыки',
-    link: 'skills',
-  },
-  {
-    text: 'Опыт',
-    link: 'experience',
-  },
-  {
-    text: 'Проекты',
-    link: 'projects',
-  },
-  {
-    text: 'Резюме',
-    link: 'resume',
-  },
-  {
-    text: 'Контакты',
-    link: 'contacts',
-  },
-]
 
 
 export const Header: React.FC<Props> = ({ className }) => {
+  const t = useHubText().header;
   const [activeSection, setActiveSection] = React.useState('');
 React.useEffect(() => {
   const sections = document.querySelectorAll('[data-section]');
@@ -70,7 +47,7 @@ React.useEffect(() => {
 
         <nav className="lg:flex hidden items-center gap-5 justify-between max-w-[600px]">
           {
-            links.map((item) => {
+            t.nav.map((item) => {
               return (
                 <a
                   key={item.link}
@@ -93,9 +70,10 @@ React.useEffect(() => {
           }
         </nav>
 
-        <Button variant="black">
-          Связаться со мной
-        </Button>
+        <div className="flex items-center sm:gap-6 gap-3">
+          <LangSwitch page="hub" />
+          <Button variant="black">{t.contact}</Button>
+        </div>
       </Container>
     </header>
   );

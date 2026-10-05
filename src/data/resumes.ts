@@ -1,4 +1,5 @@
-import { commercialProjects } from "./projects";
+import type { Locale, Localized } from "../i18n/locale";
+import { commercialProjects, type CommercialProject } from "./projects";
 
 export interface ResumeExperience {
   role: string;
@@ -17,9 +18,10 @@ export interface ResumeProject {
   bullets: string[];
 }
 
+export type ResumeSlug = "react" | "wp";
+
 export interface ResumeData {
-  slug: "react" | "wp";
-  pageTitle: string;
+  slug: ResumeSlug;
   role: string;
   stackLine: string;
   summary: string[];
@@ -31,10 +33,32 @@ export interface ResumeData {
   experience: ResumeExperience[];
   commercialTitle?: string;
   commercial?: ResumeProject[];
-  other: { label: string; slug: "react" | "wp" };
+  /** Языки — показываются, только если заполнены */
+  languages?: string[];
+  other: { label: string; slug: ResumeSlug };
 }
 
-const freelance: ResumeExperience = {
+const toResumeProject = (p: CommercialProject, locale: Locale): ResumeProject => ({
+  name: p.domain,
+  href: p.url,
+  meta: p.kind[locale],
+  bullets: [p.tasks[locale].join(" · ")],
+});
+
+const projectsFor = (locale: Locale, count?: number) =>
+  commercialProjects.slice(0, count).map((p) => toResumeProject(p, locale));
+
+const STACK_PORTFOLIO = ["React", "TypeScript", "Vite", "Tailwind CSS"];
+const STACK_PIZZA = ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma"];
+const LINKS_PORTFOLIO = (demo: string) => [
+  { text: demo, href: "https://cristalit42.github.io/resume/" },
+  { text: "GitHub", href: "https://github.com/Cristalit42/resume" },
+];
+const LINKS_PIZZA = [{ text: "GitHub", href: "https://github.com/Cristalit42/next-pizza" }];
+
+/* ============================== RU ============================== */
+
+const freelanceRu: ResumeExperience = {
   role: "Frontend / WordPress-разработчик",
   company: "Фриланс",
   period: "2023 — н. в.",
@@ -45,38 +69,8 @@ const freelance: ResumeExperience = {
   ],
 };
 
-const toResumeProject = (p: (typeof commercialProjects)[number]): ResumeProject => ({
-  name: p.domain,
-  href: p.url,
-  meta: p.kind,
-  bullets: [p.tasks.join(" · ")],
-});
-
-const portfolioProject: ResumeProject = {
-  name: "Сайт-портфолио",
-  stack: ["React", "TypeScript", "Vite", "Tailwind CSS"],
-  links: [
-    { text: "Демо", href: "https://cristalit42.github.io/resume/" },
-    { text: "GitHub", href: "https://github.com/Cristalit42/resume" },
-  ],
-  bullets: [
-    "Компонентная архитектура, типизированные пропсы, данные вынесены из разметки",
-    "Анимация появления текста по словам без ручной работы с DOM: разбиение при рендере + IntersectionObserver, учёт prefers-reduced-motion",
-    "Многостраничная сборка Vite (хаб + две страницы резюме с печатью в PDF), деплой на GitHub Pages",
-  ],
-};
-
-const pizzaProject: ResumeProject = {
-  name: "Next Pizza — интернет-магазин",
-  meta: "в разработке",
-  stack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "Prisma"],
-  links: [{ text: "GitHub", href: "https://github.com/Cristalit42/next-pizza" }],
-  bullets: ["Fullstack-приложение: каталог, корзина, работа с базой данных через Prisma ORM"],
-};
-
-export const reactResume: ResumeData = {
+const reactRu: ResumeData = {
   slug: "react",
-  pageTitle: "Даниил Полыгалов — Frontend-разработчик (React)",
   role: "Frontend-разработчик (React)",
   stackLine: "React · TypeScript · Next.js · Tailwind CSS",
   summary: [
@@ -91,7 +85,25 @@ export const reactResume: ResumeData = {
   ],
   order: ["projects", "experience", "commercial"],
   projectsTitle: "Проекты на React",
-  projects: [portfolioProject, pizzaProject],
+  projects: [
+    {
+      name: "Сайт-портфолио",
+      stack: STACK_PORTFOLIO,
+      links: LINKS_PORTFOLIO("Демо"),
+      bullets: [
+        "Компонентная архитектура, типизированные пропсы, данные вынесены из разметки",
+        "Анимация появления текста по словам без ручной работы с DOM: разбиение при рендере + IntersectionObserver, учёт prefers-reduced-motion",
+        "Многостраничная сборка Vite: хаб + два резюме с печатью в PDF, i18n RU/EN через контекст и типизированные словари, деплой на GitHub Pages",
+      ],
+    },
+    {
+      name: "Next Pizza — интернет-магазин",
+      meta: "в разработке",
+      stack: STACK_PIZZA,
+      links: LINKS_PIZZA,
+      bullets: ["Fullstack-приложение: каталог, корзина, работа с базой данных через Prisma ORM"],
+    },
+  ],
   experience: [
     {
       role: "Frontend-разработчик",
@@ -105,16 +117,15 @@ export const reactResume: ResumeData = {
         "50+ проектов сдано в срок",
       ],
     },
-    freelance,
+    freelanceRu,
   ],
   commercialTitle: "Коммерческие проекты",
-  commercial: commercialProjects.slice(0, 3).map(toResumeProject),
+  commercial: projectsFor("ru", 3),
   other: { label: "Резюме WordPress-разработчика", slug: "wp" },
 };
 
-export const wpResume: ResumeData = {
+const wpRu: ResumeData = {
   slug: "wp",
-  pageTitle: "Даниил Полыгалов — WordPress-разработчик",
   role: "WordPress-разработчик",
   stackLine: "WordPress · WooCommerce · ACF · JavaScript",
   summary: [
@@ -138,7 +149,7 @@ export const wpResume: ResumeData = {
   ],
   order: ["experience", "projects"],
   projectsTitle: "Проекты",
-  projects: commercialProjects.map(toResumeProject),
+  projects: projectsFor("ru"),
   experience: [
     {
       role: "Frontend / WordPress-разработчик",
@@ -153,7 +164,133 @@ export const wpResume: ResumeData = {
         "50+ проектов сдано в срок",
       ],
     },
-    freelance,
+    freelanceRu,
   ],
   other: { label: "Резюме React-разработчика", slug: "react" },
+};
+
+/* ============================== EN ============================== */
+
+// Укажи свой уровень английского — блок «Languages» появится в EN-резюме:
+// const languagesEn = ["Russian — native", "English — B1 (intermediate)"];
+const languagesEn: string[] | undefined = undefined;
+
+const freelanceEn: ResumeExperience = {
+  role: "Frontend / WordPress Developer",
+  company: "Freelance",
+  period: "2023 — present",
+  bullets: [
+    "Turnkey websites for small businesses — from markup to launch",
+    "Custom themes, ACF, improvements and speed optimization of existing sites",
+    "Landing pages and small WooCommerce online stores",
+  ],
+};
+
+const reactEn: ResumeData = {
+  slug: "react",
+  role: "Frontend Developer (React)",
+  stackLine: "React · TypeScript · Next.js · Tailwind CSS",
+  summary: [
+    "Frontend developer with 2+ years of commercial experience and 50+ delivered projects — from landing pages to online stores with complex client-side logic.",
+    "Currently focused on the React ecosystem: TypeScript, Next.js, Tailwind CSS. I write typed, component-based code and understand APIs and databases at the level of a fullstack pet project.",
+    "From commercial work I bring accurate responsive layouts, attention to performance, third-party integrations and reliable delivery on deadlines.",
+    "Open to remote full-time roles and freelance projects. Time zone: GMT+6.",
+  ],
+  skills: [
+    { title: "Core stack", items: ["React", "TypeScript", "Next.js", "JavaScript (ES6+)", "Tailwind CSS"] },
+    { title: "Markup & UI", items: ["HTML5", "CSS3 / SCSS", "Responsive layout", "Cross-browser", "GSAP"] },
+    { title: "Tools", items: ["Git / GitHub", "Vite", "ESLint", "REST API", "PostgreSQL / Prisma (basic)"] },
+  ],
+  order: ["projects", "experience", "commercial"],
+  projectsTitle: "React projects",
+  projects: [
+    {
+      name: "Portfolio site",
+      stack: STACK_PORTFOLIO,
+      links: LINKS_PORTFOLIO("Demo"),
+      bullets: [
+        "Component architecture, typed props, content separated from markup",
+        "Word-by-word text reveal without manual DOM manipulation: splitting at render + IntersectionObserver, respects prefers-reduced-motion",
+        "Multi-page Vite build: hub + two print-to-PDF resumes, RU/EN i18n via React context and typed dictionaries, deployed to GitHub Pages",
+      ],
+    },
+    {
+      name: "Next Pizza — online store",
+      meta: "in progress",
+      stack: STACK_PIZZA,
+      links: LINKS_PIZZA,
+      bullets: ["Fullstack app: catalog, cart, database access via Prisma ORM"],
+    },
+  ],
+  experience: [
+    {
+      role: "Frontend Developer",
+      company: "Usertech",
+      period: "2024 — present",
+      bullets: [
+        "Built WooCommerce cart editing in a popup without page reload: real-time price recalculation, option and weight changes",
+        "Integrated the T-Bank payment gateway and CDEK shipping into an online store",
+        "Built interactive interfaces: an interactive map, quizzes, catalog filters, forms sending to Telegram and email",
+        "Animations with GSAP ScrollTrigger and vanilla JavaScript",
+        "50+ projects delivered on time",
+      ],
+    },
+    freelanceEn,
+  ],
+  commercialTitle: "Commercial projects",
+  commercial: projectsFor("en", 3),
+  languages: languagesEn,
+  other: { label: "WordPress Developer resume", slug: "wp" },
+};
+
+const wpEn: ResumeData = {
+  slug: "wp",
+  role: "WordPress Developer",
+  stackLine: "WordPress · WooCommerce · ACF · JavaScript",
+  summary: [
+    "2+ years of commercial WordPress development and 50+ delivered projects: business websites, landing pages and WooCommerce online stores.",
+    "I handle projects end to end: markup from a design → WordPress and ACF integration → WooCommerce logic → payments and shipping → launch.",
+    "Also working with React and TypeScript — useful for Gutenberg blocks and headless WordPress projects.",
+    "Available for freelance projects and remote roles. Time zone: GMT+6.",
+  ],
+  skills: [
+    {
+      title: "WordPress / WooCommerce",
+      items: ["Custom themes", "ACF", "Filters & catalog", "Product page, cart", "Payment & shipping integrations"],
+    },
+    {
+      title: "Frontend",
+      items: ["HTML5, CSS3 / SCSS", "JavaScript (ES6+), AJAX", "Responsive, cross-browser", "GSAP ScrollTrigger", "Swiper, Fancybox"],
+    },
+    {
+      title: "Also",
+      items: ["PHP (WordPress themes)", "REST API", "Forms → Telegram / email", "Git / GitHub", "React, TypeScript"],
+    },
+  ],
+  order: ["experience", "projects"],
+  projectsTitle: "Projects",
+  projects: projectsFor("en"),
+  experience: [
+    {
+      role: "Frontend / WordPress Developer",
+      company: "Usertech",
+      period: "2024 — present",
+      bullets: [
+        "WordPress integration: custom themes, ACF, page templates",
+        "WooCommerce logic: filters, product listings, product page; popup cart editing without page reload with live price recalculation",
+        "T-Bank payment gateway and CDEK shipping integration",
+        "Interactive map, quizzes, forms sending to Telegram and email",
+        "GSAP ScrollTrigger animations",
+        "50+ projects delivered on time",
+      ],
+    },
+    freelanceEn,
+  ],
+  languages: languagesEn,
+  other: { label: "Frontend Developer (React) resume", slug: "react" },
+};
+
+export const resumes: Record<ResumeSlug, Localized<ResumeData>> = {
+  react: { ru: reactRu, en: reactEn },
+  wp: { ru: wpRu, en: wpEn },
 };

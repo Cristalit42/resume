@@ -4,12 +4,13 @@ import { cn } from "../shared/lib/cn";
 interface BrowserProps {
   className?: string;
   domain: string;
+  alt?: string;
   image?: string;
   placeholder?: React.ReactNode;
 }
 
 /** Окно браузера. Длинный скриншот (full page) плавно прокручивается при наведении. */
-export const BrowserMockup: React.FC<BrowserProps> = ({ className, domain, image, placeholder }) => (
+export const BrowserMockup: React.FC<BrowserProps> = ({ className, domain, alt, image, placeholder }) => (
   <div className={cn("bg-white shadow-custom", className)}>
     <div className="flex items-center gap-3 h-7 sm:h-9 px-3 border-b border-[#e4e4e4]">
       <div className="flex gap-1.5" aria-hidden>
@@ -25,7 +26,7 @@ export const BrowserMockup: React.FC<BrowserProps> = ({ className, domain, image
       {image ? (
         <img
           src={image}
-          alt={`Скриншот сайта ${domain}`}
+          alt={alt ?? domain}
           loading="lazy"
           className="mockup-scroll absolute inset-0 w-full h-full object-cover object-top"
         />

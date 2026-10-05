@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "../shared/lib/cn";
 import { Container, Title, Text, Button, Clock, sectionMargin } from "../components/";
+import { useHubText } from "../i18n/hub";
 
 
 import heroImg from "../assets/hero-img.webp";
@@ -12,30 +13,29 @@ interface Props {
 
 
 export const Hero: React.FC<Props> = ({ className }) => {
+  const t = useHubText().hero;
+
   return (
     <div className={cn('sm:pt-[140px] pt-[100px] relative', className, sectionMargin)}>
       <Container className="relative">
         <div className="flex sm:p-5 p-3 items-center justify-between gap-5 bg-primary 1200:absolute top-0 right-4 w-full 1200:max-w-[570px]">
           <Text className="text-white sm:text-2xl text-xs">
-            Frontend Developer
+            {t.role}
           </Text>
           <div className="flex flex-col sm:gap-2 gap-1">
             <Text className="text-white opacity-70 sm:text-base text-xs ">
-              Время KGZ
+              {t.timeLabel}
             </Text>
             <Clock />
           </div>
         </div>
         <div className="max-w-[660px]">
-          <Title text={<>Даниил <br /> Полыгалов</>} size="2xl" className="1200:mb-5 1200:text-[80px] sm:text-[60px] text-[34px] mb-0"></Title>
+          <Title text={<>{t.name[0]} <br /> {t.name[1]}</>} size="2xl" className="1200:mb-5 1200:text-[80px] sm:text-[60px] text-[34px] mb-0"></Title>
           <Text className="1200:mb-8 mb-4 sm:text-base text-sm">
-            2+ года коммерческой разработки: адаптивная вёрстка, кастомные
-            темы WordPress, сложная JS-логика для интернет-магазинов.
-            Сейчас перехожу на React-стек — строю fullstack pet-проекты
-            на Next.js и готов применять это в команде.
+            {t.intro}
           </Text>
           <Button variant="primary" className="mb-5" link="#projects">
-            Смотреть кейсы
+            {t.cta}
             <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9.15833 2.68333V1.34167V0L11.8417 0V2.68333H9.15833Z" fill="white" />
               <path d="M0 11.8417L0 10.5L0 9.15833H2.68333V11.8417H0Z" fill="white" />
@@ -57,13 +57,13 @@ export const Hero: React.FC<Props> = ({ className }) => {
               50+
             </div>
             <Text className="text-black sm:text-base text-sm">
-              коммерческих проектов
+              {t.stat}
             </Text>
           </div>
         </div>
 
       </Container>
-      <img className="absolute right-0 bottom-[-80px] 1200:z-[1] z-[-1] w-[250px]  sm:w-[350px] 1000:w-[600px]" src={heroImg} alt="Hero Image" />
+      <img className="absolute right-0 bottom-[-80px] 1200:z-[1] z-[-1] w-[250px]  sm:w-[350px] 1000:w-[600px]" src={heroImg} alt="" aria-hidden />
     </div>
   );
 };

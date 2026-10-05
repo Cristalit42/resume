@@ -1,11 +1,43 @@
 import React from "react";
 import { cn } from "../shared/lib/cn";
-import { contacts, github, profile, resumeLinks } from "../data/profile";
+import { contacts, github, profile, SITE_ORIGIN } from "../data/profile";
 import type { ResumeData, ResumeExperience, ResumeProject } from "../data/resumes";
+import { LangSwitch } from "../components/LangSwitch";
+import { useLocale } from "../i18n/context";
+import { pageUrl, type Localized } from "../i18n/locale";
 
 interface Props {
   data: ResumeData;
 }
+
+const ui: Localized<{
+  back: string;
+  pdf: string;
+  summary: string;
+  skills: string;
+  experience: string;
+  languages: string;
+  portfolio: string;
+}> = {
+  ru: {
+    back: "← Портфолио",
+    pdf: "Скачать PDF",
+    summary: "О себе",
+    skills: "Навыки",
+    experience: "Опыт работы",
+    languages: "Языки",
+    portfolio: "Портфолио",
+  },
+  en: {
+    back: "← Portfolio",
+    pdf: "Download PDF",
+    summary: "Summary",
+    skills: "Skills",
+    experience: "Experience",
+    languages: "Languages",
+    portfolio: "Portfolio",
+  },
+};
 
 const linkClass = "text-primary underline-offset-2 hover:underline print:text-black";
 
@@ -83,7 +115,10 @@ const ProjectItem: React.FC<{ item: ResumeProject }> = ({ item }) => (
 );
 
 export const ResumePage: React.FC<Props> = ({ data }) => {
-  const otherHref = resumeLinks[data.other.slug];
+  const locale = useLocale();
+  const t = ui[locale];
+  const hubHref = pageUrl("hub", locale);
+  const siteUrl = `${SITE_ORIGIN}${hubHref}`;
 
   const blocks = {
     projects: (
@@ -98,7 +133,7 @@ export const ResumePage: React.FC<Props> = ({ data }) => {
     ),
     experience: (
       <section key="experience">
-        <SectionTitle>Опыт работы</SectionTitle>
+        <SectionTitle>{t.experience}</SectionTitle>
         <div className="flex flex-col gap-5">
           {data.experience.map((e) => (
             <ExperienceItem key={e.company} item={e} />
@@ -122,16 +157,17 @@ export const ResumePage: React.FC<Props> = ({ data }) => {
     <div className="min-h-screen py-4 sm:py-10 px-[10px] print:p-0 font-chetty">
       {/* Панель действий — не печатается */}
       <nav className="print:hidden max-w-[900px] mx-auto mb-4 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <a href={resumeLinks.hub} className="hover:text-primary transition">← Портфолио</a>
+        <a href={hubHref} className="hover:text-primary transition">{t.back}</a>
         <div className="flex flex-wrap items-center gap-4">
-          <a href={otherHref} className="hover:text-primary transition">{data.other.label} →</a>
+          <LangSwitch page={data.slug} />
+          <a href={pageUrl(data.other.slug, locale)} className="hover:text-primary transition">{data.other.label} →</a>
           <button
             type="button"
             onClick={() => window.print()}
             className="font-luna text-[10px] sm:text-[11px] uppercase text-white bg-primary px-5 py-3 hover:scale-105 duration-300"
             style={{ clipPath: "polygon(0 0, 92% 0, 100% 25%, 100% 100%, 8% 100%, 0 75%)" }}
           >
-            Скачать PDF
+            {t.pdf}
           </button>
         </div>
       </nav>
@@ -140,10 +176,10 @@ export const ResumePage: React.FC<Props> = ({ data }) => {
         <header className="flex flex-col gap-3">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h1 className="font-luna uppercase text-[26px] sm:text-[38px] leading-[110%]">{profile.name}</h1>
+              <h1 className="font-luna uppercase text-[26px] sm:text-[38px] leading-[110%]">{profile.name[locale]}</h1>
               <p className="font-luna uppercase text-primary text-[13px] sm:text-base mt-2">{data.role}</p>
             </div>
-            <p className="text-sm text-gray-500">{profile.location}</p>
+            <p className="text-sm text-gray-500">{profile.location[locale]}</p>
           </div>
           <p className="text-sm sm:text-base text-gray-700">{data.stackLine}</p>
           <ul className="flex flex-wrap gap-x-5 gap-y-1 text-sm">
@@ -162,7 +198,7 @@ export const ResumePage: React.FC<Props> = ({ data }) => {
         </header>
 
         <section>
-          <SectionTitle>О себе</SectionTitle>
+          <SectionTitle>{t.summary}</SectionTitle>
           <div className="flex flex-col gap-2">
             {data.summary.map((p) => (
               <p key={p} className="text-sm sm:text-[15px] leading-[150%] text-gray-700">{p}</p>
@@ -171,7 +207,7 @@ export const ResumePage: React.FC<Props> = ({ data }) => {
         </section>
 
         <section>
-          <SectionTitle>Навыки</SectionTitle>
+          <SectionTitle>{t.skills}</SectionTitle>
           <div className="grid sm:grid-cols-3 grid-cols-1 gap-5 print:grid-cols-3">
             {data.skills.map((group) => (
               <div key={group.title}>
@@ -184,10 +220,17 @@ export const ResumePage: React.FC<Props> = ({ data }) => {
 
         {data.order.map((key) => blocks[key])}
 
+        {data.languages && (
+          <section>
+            <SectionTitle>{t.languages}</SectionTitle>
+            <Chips items={data.languages} />
+          </section>
+        )}
+
         <footer className={cn("text-sm text-gray-500 border-t border-gray-200 pt-4")}>
-          Портфолио:{" "}
-          <a className={linkClass} href={profile.site.href} target="_blank" rel="noopener noreferrer">
-            {profile.site.text}
+          {t.portfolio}:{" "}
+          <a className={linkClass} href={siteUrl} target="_blank" rel="noopener noreferrer">
+            {siteUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
           </a>
         </footer>
       </main>

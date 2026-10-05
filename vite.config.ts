@@ -9,11 +9,14 @@ export default defineConfig({
   base: '/resume/', // ВАЖНО: имя репозитория на GitHub Pages
   build: {
     rollupOptions: {
-      // Многостраничная сборка: хаб + два резюме
+      // Многостраничная сборка: хаб + два резюме, на русском и английском
       input: {
         main: page('./index.html'),
         react: page('./react/index.html'),
         wp: page('./wp/index.html'),
+        'en-main': page('./en/index.html'),
+        'en-react': page('./en/react/index.html'),
+        'en-wp': page('./en/wp/index.html'),
       },
     },
   },

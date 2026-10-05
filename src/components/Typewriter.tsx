@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 
-const words = [
-  "разработки",   // Основа моей разработки ✓
-  "работы",       // Основа моей работы ✓
-  "практики",     // Основа моей практики ✓
-  "философии",    // Основа моей философии ✓ — звучит солидно
-  "жизни",        // Основа моей жизни ✓ — с характером
-];
+interface Props {
+  words: string[];
+}
 
-export const Typewriter = () => {
+export const Typewriter = ({ words }: Props) => {
   const [text, setText] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -32,7 +28,7 @@ export const Typewriter = () => {
     }, delay);
 
     return () => clearTimeout(timeout);
-  }, [text, isDeleting, wordIndex]);
+  }, [text, isDeleting, wordIndex, words]);
 
   return (
     <p className=" 1200:text-[85px] 1000:text-[60px] text-[30px] text-primary font-luna font-bold p-3 bg-secondary max-w-[900px] 1000:w-full 1200:ml-auto sm:ml-[120px] ml-[30px]  border-l-2 border-primary">
