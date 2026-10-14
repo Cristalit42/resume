@@ -50,6 +50,16 @@ export const commercialProjects: CommercialProject[] = [
     ),
   },
   {
+    slug: "dcclinic",
+    domain: "dcclinicspb.ru",
+    url: "https://dcclinicspb.ru",
+    kind: { ru: "Сайт медицинской клиники в Санкт-Петербурге", en: "Website for a medical clinic in Saint Petersburg" },
+    tasks: tasks(
+      ["Калькуляторы", "Поиск по сайту", "Заявки с форм в Telegram-бот", "Анимации"],
+      ["Calculators", "Site search", "Form leads to a Telegram bot", "Animations"]
+    ),
+  },
+  {
     slug: "fullarch",
     domain: "fullarchcourse.ru",
     url: "https://fullarchcourse.ru",
@@ -61,6 +71,27 @@ export const commercialProjects: CommercialProject[] = [
     domain: "profilelight.pro",
     url: "https://profilelight.pro",
     kind: { ru: "Сайт компании по остеклению частных домов", en: "Website for a home glazing company" },
+    tasks: tasks(["Анимации"], ["Animations"]),
+  },
+  {
+    slug: "buyflat",
+    domain: "buyflat.pro",
+    url: "https://buyflat.pro",
+    kind: { ru: "Сайт по продаже недвижимости", en: "Real estate website" },
+    tasks: tasks([], []),
+  },
+  {
+    slug: "tandem",
+    domain: "tandem-detailing.ru",
+    url: "https://tandem-detailing.ru",
+    kind: { ru: "Сайт детейлинг-центра", en: "Website for a car detailing studio" },
+    tasks: tasks([], []),
+  },
+  {
+    slug: "kredit0",
+    domain: "kredit0.beget.tech",
+    url: "https://решиминаче.рф",
+    kind: { ru: "Сайт кредитного сервиса", en: "Website for a lending service" },
     tasks: tasks(["Анимации"], ["Animations"]),
   },
   {
